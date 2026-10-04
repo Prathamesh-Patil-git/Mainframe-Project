@@ -21,7 +21,7 @@ const btn = "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 
 const btnP = `${btn} bg-primary text-primary-foreground hover:bg-primary/90`;
 const btnS = `${btn} border border-border bg-card hover:bg-secondary`;
 const btnLight = `${btn} bg-primary-foreground text-navy hover:bg-primary-foreground/90`;
-const btnGhost = `${btn} border border-primary-foreground/30 bg-primary-foreground/5 text-primary-foreground hover:bg-primary-foreground/15`;
+const btnGhost = `${btn} border border-primary-foreground/40 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20`;
 const eyebrow = "font-mono text-[11px] tracking-[0.22em] text-muted-foreground";
 const eyebrowLight = "font-mono text-[11px] tracking-[0.22em] text-primary-foreground/70";
 const h2 = "font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl";
@@ -94,12 +94,13 @@ function Hero() {
     <Section className="relative pt-16 sm:pt-20">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/50 via-60% to-background to-82%" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/55 via-60% to-background to-82%" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/75 via-navy/35 via-45% to-transparent" />
       </div>
       <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
         <Reveal>
           <p className={eyebrowLight}>AI-POWERED MAINFRAME OPERATIONS</p>
-          <h1 className="mt-6 font-display text-5xl leading-[1] tracking-tight text-primary-foreground sm:text-7xl lg:text-[5.5rem]">
+          <h1 className="hero-title mt-6 font-display text-5xl leading-[1] tracking-tight text-primary-foreground sm:text-7xl lg:text-[5.5rem]">
             Bring clarity to complex mainframe workloads.
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/80">
