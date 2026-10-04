@@ -92,7 +92,7 @@ function Section({ id, children, className = "" }: { id?: string; children: Reac
 function Hero() {
   return (
     <Section className="relative pt-16 sm:pt-20">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-16 bottom-0 -z-10 overflow-hidden">
         <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/55 via-60% to-background to-82%" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/75 via-navy/35 via-45% to-transparent" />
