@@ -224,7 +224,7 @@ function WorkloadFlowMini() {
   const xs = [10, 70, 130, 190, 250];
   return (
     <svg viewBox="0 0 280 60" className="w-full" aria-hidden>
-      {xs.slice(0, -1).map((x, i) => <line key={x} x1={x + 14} y1={30} x2={xs[i + 1] - 4} y2={30} className="flow-line stroke-navy/30" strokeWidth="1.5" />)}
+      {xs.slice(0, -1).map((x, i) => <line key={x} x1={x + 14} y1={30} x2={xs[i + 1]! - 4} y2={30} className="flow-line stroke-navy/30" strokeWidth="1.5" />)}
       {xs.map((x, i) => <rect key={x} x={x - 4} y={20} width="22" height="20" rx="5" className={["fill-success", "fill-destructive", "fill-muted-foreground/40", "fill-muted-foreground/40", "fill-warning"][i]} opacity={0.85} />)}
     </svg>
   );
@@ -416,7 +416,7 @@ function FinalCTA() {
       <Reveal className={`${panel} relative overflow-hidden px-8 py-20 sm:px-16`}>
         <svg className="pointer-events-none absolute -right-10 top-0 h-full w-1/2 opacity-60" viewBox="0 0 300 300" aria-hidden>
           {Array.from({ length: 9 }).map((_, i) => <circle key={i} cx={40 + (i % 3) * 100} cy={50 + Math.floor(i / 3) * 100} r="6" className={i === 4 ? "fill-destructive/60" : "fill-navy/20"} />)}
-          {[[0, 1], [1, 2], [0, 4], [4, 8], [3, 4], [4, 5], [2, 5], [6, 7], [7, 8]].map(([a, b]) => (
+          {([[0, 1], [1, 2], [0, 4], [4, 8], [3, 4], [4, 5], [2, 5], [6, 7], [7, 8]] as [number, number][]).map(([a, b]) => (
             <line key={`${a}${b}`} x1={40 + (a % 3) * 100} y1={50 + Math.floor(a / 3) * 100} x2={40 + (b % 3) * 100} y2={50 + Math.floor(b / 3) * 100} className="flow-line stroke-navy/20" strokeWidth="1.5" />
           ))}
         </svg>

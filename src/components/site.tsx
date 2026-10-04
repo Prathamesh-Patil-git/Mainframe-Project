@@ -20,7 +20,7 @@ export function Reveal({ children, className = "", delay = 0 }: { children: Reac
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e?.isIntersecting) {
           el.classList.add("in");
           io.disconnect();
         }
@@ -69,7 +69,7 @@ export function WorkloadFlow({ compact = false }: { compact?: boolean }) {
     { id: "e", label: "RISK", job: "RSK002", x: 305, y: 310, s: "failed" },
     { id: "f", label: "REPORTING", job: "RPT001", x: 200, y: 400, s: "blocked" },
   ];
-  const edges = [["a", "b"], ["b", "c"], ["c", "d"], ["c", "e"], ["d", "f"], ["e", "f"]];
+  const edges: [string, string][] = [["a", "b"], ["b", "c"], ["c", "d"], ["c", "e"], ["d", "f"], ["e", "f"]];
   const get = (id: string) => nodes.find((n) => n.id === id)!;
   return (
     <svg viewBox="0 0 400 440" className="h-auto w-full" role="img" aria-label="Batch workload flow diagram">
