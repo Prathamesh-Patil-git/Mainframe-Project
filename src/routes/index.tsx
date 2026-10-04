@@ -96,6 +96,7 @@ function Hero() {
         <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/55 via-60% to-background to-82%" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/75 via-navy/35 via-45% to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy/90 via-navy/60 to-transparent" />
       </div>
       <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
         <Reveal>
