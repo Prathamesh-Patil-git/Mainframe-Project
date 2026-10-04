@@ -89,8 +89,8 @@ function Hero() {
   return (
     <Section className="relative pt-16 sm:pt-20">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
+        <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/55 to-background" />
       </div>
       <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
         <Reveal>
