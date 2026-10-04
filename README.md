@@ -1,24 +1,37 @@
-# Pixel Perfect Pixels
+# Mainframe Control Tower
 
-Implement exactly the screenshot and nothing else
+A control-tower web application for monitoring and managing mainframe batch workloads — public marketing site plus an internal operations console (dashboard, jobs, batch streams, dependency map, failures, AI analysis, recovery, reports, datasets, settings, users, audit log).
 
-This project was built with [Lovable](https://lovable.dev).
+> Academic / Project Demonstration · demo data only
 
-## Build with Lovable
+## Frontend
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/dae94e66-ecb2-4ee1-82d1-ece657e127a3).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+The frontend stack is documented in [TECH_STACK.md](./TECH_STACK.md).
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
 ```sh
 git clone <this-repository-url>
-cd <repository-name>
+cd mainframe-control-tower
 npm i
 npm run dev
 ```
+
+## Scripts
+
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run build:dev` | Development-mode build (prerender) |
+| `npm run preview` | Preview the production build |
+| `npm run test` | Run tests (Vitest) |
+| `npm run lint` | ESLint |
+| `npm run format` | Prettier |
+
+## Built with
+
+- TanStack Start (React 19)
+- TypeScript
+- Tailwind CSS v4
+- Vite
