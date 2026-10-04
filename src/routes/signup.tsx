@@ -31,7 +31,7 @@ const schema = z
 
 function SignUp() {
   const nav = useNavigate();
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<string, string>> & Record<"identity"|"password"|"confirm"|"terms"|"name"|"email"|"username", string | undefined>>({} as never);
   const [loading, setLoading] = useState(false);
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
@@ -40,10 +40,10 @@ function SignUp() {
     if (!r.success) {
       const out: Record<string, string> = {};
       r.error.issues.forEach((i) => (out[String(i.path[0])] ??= i.message));
-      setErrors(out);
+      setErrors(out as never);
       return;
     }
-    setErrors({});
+    setErrors({} as never);
     setLoading(true);
     setTimeout(() => nav({ to: "/dashboard" }), 900);
   };

@@ -24,7 +24,7 @@ const schema = z.object({
 
 function SignIn() {
   const nav = useNavigate();
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<string, string>> & Record<"identity"|"password"|"confirm"|"terms"|"name"|"email"|"username", string | undefined>>({} as never);
   const [loading, setLoading] = useState(false);
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
@@ -32,10 +32,10 @@ function SignIn() {
     const f = new FormData(e.currentTarget);
     const r = schema.safeParse({ identity: f.get("identity"), password: f.get("password") });
     if (!r.success) {
-      setErrors(Object.fromEntries(r.error.issues.map((i) => [i.path[0], i.message])));
+      setErrors(Object.fromEntries(r.error.issues.map((i) => [i.path[0], i.message])) as never);
       return;
     }
-    setErrors({});
+    setErrors({} as never);
     setLoading(true);
     setTimeout(() => nav({ to: "/dashboard" }), 900);
   };
