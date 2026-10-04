@@ -10,18 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AppAiAnalysisRouteImport } from './routes/_app.ai-analysis'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppDatasetsRouteImport } from './routes/_app.datasets'
+import { Route as AppDependenciesRouteImport } from './routes/_app.dependencies'
+import { Route as AppFailuresRouteImport } from './routes/_app.failures'
+import { Route as AppRecoveryRouteImport } from './routes/_app.recovery'
+import { Route as AppReportsRouteImport } from './routes/_app.reports'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppStreamsRouteImport } from './routes/_app.streams'
+import { Route as AppAdminAuditLogRouteImport } from './routes/_app.admin.audit-log'
+import { Route as AppAdminUsersRouteImport } from './routes/_app.admin.users'
+import { Route as AppJobsIndexRouteImport } from './routes/_app.jobs.index'
+import { Route as AppJobsJobIdRouteImport } from './routes/_app.jobs.$jobId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SigninRoute = SigninRouteImport.update({
@@ -34,37 +46,189 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppAiAnalysisRoute = AppAiAnalysisRouteImport.update({
+  id: '/ai-analysis',
+  path: '/ai-analysis',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDatasetsRoute = AppDatasetsRouteImport.update({
+  id: '/datasets',
+  path: '/datasets',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDependenciesRoute = AppDependenciesRouteImport.update({
+  id: '/dependencies',
+  path: '/dependencies',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFailuresRoute = AppFailuresRouteImport.update({
+  id: '/failures',
+  path: '/failures',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRecoveryRoute = AppRecoveryRouteImport.update({
+  id: '/recovery',
+  path: '/recovery',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStreamsRoute = AppStreamsRouteImport.update({
+  id: '/streams',
+  path: '/streams',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminAuditLogRoute = AppAdminAuditLogRouteImport.update({
+  id: '/admin/audit-log',
+  path: '/admin/audit-log',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminUsersRoute = AppAdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppJobsIndexRoute = AppJobsIndexRouteImport.update({
+  id: '/jobs/',
+  path: '/jobs/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppJobsJobIdRoute = AppJobsJobIdRouteImport.update({
+  id: '/jobs/$jobId',
+  path: '/jobs/$jobId',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/ai-analysis': typeof AppAiAnalysisRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/datasets': typeof AppDatasetsRoute
+  '/dependencies': typeof AppDependenciesRoute
+  '/failures': typeof AppFailuresRoute
+  '/recovery': typeof AppRecoveryRoute
+  '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
+  '/streams': typeof AppStreamsRoute
+  '/admin/audit-log': typeof AppAdminAuditLogRoute
+  '/admin/users': typeof AppAdminUsersRoute
+  '/jobs/$jobId': typeof AppJobsJobIdRoute
+  '/jobs/': typeof AppJobsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/ai-analysis': typeof AppAiAnalysisRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/datasets': typeof AppDatasetsRoute
+  '/dependencies': typeof AppDependenciesRoute
+  '/failures': typeof AppFailuresRoute
+  '/recovery': typeof AppRecoveryRoute
+  '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
+  '/streams': typeof AppStreamsRoute
+  '/admin/audit-log': typeof AppAdminAuditLogRoute
+  '/admin/users': typeof AppAdminUsersRoute
+  '/jobs/$jobId': typeof AppJobsJobIdRoute
+  '/jobs': typeof AppJobsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/_app': typeof AppRouteWithChildren
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/_app/ai-analysis': typeof AppAiAnalysisRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/datasets': typeof AppDatasetsRoute
+  '/_app/dependencies': typeof AppDependenciesRoute
+  '/_app/failures': typeof AppFailuresRoute
+  '/_app/recovery': typeof AppRecoveryRoute
+  '/_app/reports': typeof AppReportsRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/streams': typeof AppStreamsRoute
+  '/_app/admin/audit-log': typeof AppAdminAuditLogRoute
+  '/_app/admin/users': typeof AppAdminUsersRoute
+  '/_app/jobs/$jobId': typeof AppJobsJobIdRoute
+  '/_app/jobs/': typeof AppJobsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/signin' | '/signup'
+  fullPaths:
+    | '/'
+    | '/signin'
+    | '/signup'
+    | '/ai-analysis'
+    | '/dashboard'
+    | '/datasets'
+    | '/dependencies'
+    | '/failures'
+    | '/recovery'
+    | '/reports'
+    | '/settings'
+    | '/streams'
+    | '/admin/audit-log'
+    | '/admin/users'
+    | '/jobs/$jobId'
+    | '/jobs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/signin' | '/signup'
-  id: '__root__' | '/' | '/dashboard' | '/signin' | '/signup'
+  to:
+    | '/'
+    | '/signin'
+    | '/signup'
+    | '/ai-analysis'
+    | '/dashboard'
+    | '/datasets'
+    | '/dependencies'
+    | '/failures'
+    | '/recovery'
+    | '/reports'
+    | '/settings'
+    | '/streams'
+    | '/admin/audit-log'
+    | '/admin/users'
+    | '/jobs/$jobId'
+    | '/jobs'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/signin'
+    | '/signup'
+    | '/_app/ai-analysis'
+    | '/_app/dashboard'
+    | '/_app/datasets'
+    | '/_app/dependencies'
+    | '/_app/failures'
+    | '/_app/recovery'
+    | '/_app/reports'
+    | '/_app/settings'
+    | '/_app/streams'
+    | '/_app/admin/audit-log'
+    | '/_app/admin/users'
+    | '/_app/jobs/$jobId'
+    | '/_app/jobs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
+  AppRoute: typeof AppRouteWithChildren
   SigninRoute: typeof SigninRoute
   SignupRoute: typeof SignupRoute
 }
@@ -78,11 +242,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signin': {
@@ -99,12 +263,137 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/ai-analysis': {
+      id: '/_app/ai-analysis'
+      path: '/ai-analysis'
+      fullPath: '/ai-analysis'
+      preLoaderRoute: typeof AppAiAnalysisRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/datasets': {
+      id: '/_app/datasets'
+      path: '/datasets'
+      fullPath: '/datasets'
+      preLoaderRoute: typeof AppDatasetsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dependencies': {
+      id: '/_app/dependencies'
+      path: '/dependencies'
+      fullPath: '/dependencies'
+      preLoaderRoute: typeof AppDependenciesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/failures': {
+      id: '/_app/failures'
+      path: '/failures'
+      fullPath: '/failures'
+      preLoaderRoute: typeof AppFailuresRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/recovery': {
+      id: '/_app/recovery'
+      path: '/recovery'
+      fullPath: '/recovery'
+      preLoaderRoute: typeof AppRecoveryRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/reports': {
+      id: '/_app/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/streams': {
+      id: '/_app/streams'
+      path: '/streams'
+      fullPath: '/streams'
+      preLoaderRoute: typeof AppStreamsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/admin/audit-log': {
+      id: '/_app/admin/audit-log'
+      path: '/admin/audit-log'
+      fullPath: '/admin/audit-log'
+      preLoaderRoute: typeof AppAdminAuditLogRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/admin/users': {
+      id: '/_app/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AppAdminUsersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/jobs/': {
+      id: '/_app/jobs/'
+      path: '/jobs'
+      fullPath: '/jobs/'
+      preLoaderRoute: typeof AppJobsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/jobs/$jobId': {
+      id: '/_app/jobs/$jobId'
+      path: '/jobs/$jobId'
+      fullPath: '/jobs/$jobId'
+      preLoaderRoute: typeof AppJobsJobIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAiAnalysisRoute: typeof AppAiAnalysisRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppDatasetsRoute: typeof AppDatasetsRoute
+  AppDependenciesRoute: typeof AppDependenciesRoute
+  AppFailuresRoute: typeof AppFailuresRoute
+  AppRecoveryRoute: typeof AppRecoveryRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppStreamsRoute: typeof AppStreamsRoute
+  AppAdminAuditLogRoute: typeof AppAdminAuditLogRoute
+  AppAdminUsersRoute: typeof AppAdminUsersRoute
+  AppJobsJobIdRoute: typeof AppJobsJobIdRoute
+  AppJobsIndexRoute: typeof AppJobsIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAiAnalysisRoute: AppAiAnalysisRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppDatasetsRoute: AppDatasetsRoute,
+  AppDependenciesRoute: AppDependenciesRoute,
+  AppFailuresRoute: AppFailuresRoute,
+  AppRecoveryRoute: AppRecoveryRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppStreamsRoute: AppStreamsRoute,
+  AppAdminAuditLogRoute: AppAdminAuditLogRoute,
+  AppAdminUsersRoute: AppAdminUsersRoute,
+  AppJobsJobIdRoute: AppJobsJobIdRoute,
+  AppJobsIndexRoute: AppJobsIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
+  AppRoute: AppRouteWithChildren,
   SigninRoute: SigninRoute,
   SignupRoute: SignupRoute,
 }
