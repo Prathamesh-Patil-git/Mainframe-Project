@@ -103,7 +103,7 @@ function Hero() {
           <h1 className="hero-title mt-6 font-display text-5xl leading-[1] tracking-tight text-primary-foreground sm:text-7xl lg:text-[5.5rem]">
             Bring clarity to complex mainframe workloads.
           </h1>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/80">
+          <p className="hero-lead mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/85">
             Monitor batch execution, understand failures, trace downstream impact, and make smarter recovery decisions from one intelligent control tower.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
