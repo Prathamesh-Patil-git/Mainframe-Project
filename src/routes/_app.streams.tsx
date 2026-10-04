@@ -10,7 +10,7 @@ export const Route = createFileRoute("/_app/streams")({
 });
 
 function StreamsPage() {
-  const [sel, setSel] = useState(streams[1].id);
+  const [sel, setSel] = useState(streams[1]!.id);
   const s = streams.find((x) => x.id === sel)!;
   const list = jobs.filter((j) => j.stream === sel);
   return (

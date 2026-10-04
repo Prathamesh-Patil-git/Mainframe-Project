@@ -38,7 +38,7 @@ function SignIn() {
     }
     setErrors({} as never);
     setLoading(true);
-    const id = r.data.identity.split("@")[0].toUpperCase().slice(0, 8);
+    const id = (r.data.identity.split("@")[0] ?? "OPER").toUpperCase().slice(0, 8);
     saveSession({ name: id, username: id, role: "administrator" });
     setTimeout(() => nav({ to: "/dashboard" }), 900);
   };

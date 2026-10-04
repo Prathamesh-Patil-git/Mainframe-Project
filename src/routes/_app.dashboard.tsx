@@ -34,7 +34,7 @@ function Dashboard() {
       )}
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {kpis.map((k) => <Kpi key={k.key} {...k} />)}
+        {kpis.map(({ key, ...k }) => <Kpi key={key} {...k} />)}
       </div>
 
       <div className="mt-6 grid gap-6 xl:grid-cols-3">
