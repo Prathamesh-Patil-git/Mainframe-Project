@@ -20,7 +20,10 @@ export const Route = createFileRoute("/")({
 const btn = "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 const btnP = `${btn} bg-primary text-primary-foreground hover:bg-primary/90`;
 const btnS = `${btn} border border-border bg-card hover:bg-secondary`;
+const btnLight = `${btn} bg-primary-foreground text-navy hover:bg-primary-foreground/90`;
+const btnGhost = `${btn} border border-primary-foreground/40 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20`;
 const eyebrow = "font-mono text-[11px] tracking-[0.22em] text-muted-foreground";
+const eyebrowLight = "hero-lead font-mono text-[11px] tracking-[0.22em] text-primary-foreground/85";
 const h2 = "font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl";
 const panel = "rounded-2xl border border-border bg-card shadow-soft";
 
@@ -53,18 +56,19 @@ function Nav() {
     return () => window.removeEventListener("scroll", f);
   }, []);
   const links = [["Product", "#product"], ["How It Works", "#how"], ["AI", "#ai"], ["About", "#about"]];
+  const onDark = !scrolled && !open;
   return (
     <header className={`sticky top-0 z-50 transition-colors duration-300 ${scrolled || open ? "border-b border-border bg-background/90 backdrop-blur" : "border-b border-transparent"}`}>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Logo />
+        <Logo tone={onDark ? "light" : "dark"} />
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
-          {links.map(([l, h]) => <a key={h} href={h} className="text-sm text-muted-foreground transition hover:text-foreground">{l}</a>)}
+          {links.map(([l, h]) => <a key={h} href={h} className={`text-sm transition ${onDark ? "text-primary-foreground/70 hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{l}</a>)}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-          <Link to="/signin" className="px-3 py-2 text-sm font-medium hover:text-accent">Sign In</Link>
-          <Link to="/signup" className={`${btnP} py-2`}>Get Started</Link>
+          <Link to="/signin" className={`px-3 py-2 text-sm font-medium transition ${onDark ? "text-primary-foreground/90 hover:text-primary-foreground" : "hover:text-accent"}`}>Sign In</Link>
+          <Link to="/signup" className={`${onDark ? btnLight : btnP} py-2`}>Get Started</Link>
         </div>
-        <button className="rounded-md p-2 md:hidden" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu" aria-expanded={open}>
+        <button className={`rounded-md p-2 md:hidden ${onDark ? "text-primary-foreground" : ""}`} onClick={() => setOpen((o) => !o)} aria-label="Toggle menu" aria-expanded={open}>
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
@@ -88,22 +92,24 @@ function Section({ id, children, className = "" }: { id?: string; children: Reac
 function Hero() {
   return (
     <Section className="relative pt-16 sm:pt-20">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover opacity-70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/55 to-background" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-16 bottom-0 -z-10 overflow-hidden">
+        <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/55 via-60% to-background to-82%" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/75 via-navy/35 via-45% to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy/90 via-navy/60 to-transparent" />
       </div>
       <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
         <Reveal>
-          <p className={eyebrow}>AI-POWERED MAINFRAME OPERATIONS</p>
-          <h1 className="mt-6 font-display text-5xl leading-[1] tracking-tight sm:text-7xl lg:text-[5.5rem]">
+          <p className={eyebrowLight}>AI-POWERED MAINFRAME OPERATIONS</p>
+          <h1 className="hero-title mt-6 font-display text-5xl leading-[1] tracking-tight text-primary-foreground sm:text-7xl lg:text-[5.5rem]">
             Bring clarity to complex mainframe workloads.
           </h1>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="hero-lead mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/85">
             Monitor batch execution, understand failures, trace downstream impact, and make smarter recovery decisions from one intelligent control tower.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link to="/signup" className={btnP}>Get Started <ArrowRight size={16} /></Link>
-            <a href="#product" className={btnS}>Explore the Platform</a>
+            <Link to="/signup" className={btnLight}>Get Started <ArrowRight size={16} /></Link>
+            <a href="#product" className={btnGhost}>Explore the Platform</a>
           </div>
         </Reveal>
         <Reveal delay={150} className={`${panel} p-6 sm:p-8`}>

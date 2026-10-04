@@ -1,14 +1,15 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({ className = "", tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
+  const light = tone === "light";
   return (
     <Link to="/" className={`flex items-center gap-2.5 rounded-md focus-visible:outline-2 focus-visible:outline-ring ${className}`}>
       <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden>
-        <rect x="1" y="1" width="24" height="24" rx="6" className="fill-navy" />
-        <path d="M8 18V8m5 10V11m5 7v-4" className="stroke-primary-foreground" strokeWidth="2.2" strokeLinecap="round" />
+        <rect x="1" y="1" width="24" height="24" rx="6" className={light ? "fill-primary-foreground" : "fill-navy"} />
+        <path d="M8 18V8m5 10V11m5 7v-4" className={light ? "stroke-navy" : "stroke-primary-foreground"} strokeWidth="2.2" strokeLinecap="round" />
       </svg>
-      <span className="text-[15px] font-medium tracking-tight">Mainframe Control Tower</span>
+      <span className={`text-[15px] font-medium tracking-tight ${light ? "text-primary-foreground" : ""}`}>Mainframe Control Tower</span>
     </Link>
   );
 }
