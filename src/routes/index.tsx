@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Logo, Reveal, Dot, WorkloadFlow, type Status } from "@/components/site";
+import heroDatacenter from "@/assets/hero-datacenter.jpg";
+import controlRoom from "@/assets/control-room.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -85,7 +87,11 @@ function Section({ id, children, className = "" }: { id?: string; children: Reac
 
 function Hero() {
   return (
-    <Section className="pt-16 sm:pt-20">
+    <Section className="relative pt-16 sm:pt-20">
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
+      </div>
       <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
         <Reveal>
           <p className={eyebrow}>AI-POWERED MAINFRAME OPERATIONS</p>
@@ -172,7 +178,10 @@ function Preview() {
         <h2 className={`${h2} mt-5`}>One place to understand the entire workload.</h2>
         <p className="mt-6 text-lg text-muted-foreground">See what is running, what has failed, what is blocked, and what happens next.</p>
       </Reveal>
-      <Reveal delay={100} className={`${panel} mt-16 overflow-hidden`}>
+      <Reveal delay={60} className={`${panel} mt-12 overflow-hidden`}>
+        <img src={controlRoom} alt="Dark enterprise operations control room with live monitoring dashboards" loading="lazy" width={1920} height={1088} className="h-64 w-full object-cover sm:h-96" />
+      </Reveal>
+      <Reveal delay={100} className={`${panel} mt-8 overflow-hidden`}>
         <div className="flex items-center gap-2 border-b border-border px-5 py-3">
           <span className="h-2.5 w-2.5 rounded-full bg-border" /><span className="h-2.5 w-2.5 rounded-full bg-border" /><span className="h-2.5 w-2.5 rounded-full bg-border" />
           <span className="ml-3 font-mono text-[11px] text-muted-foreground">control-tower / overview — product preview</span>
