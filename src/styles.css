@@ -177,6 +177,6 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 .internal-app .flat-panel { border-radius: 0.5rem; }
 .internal-app .console-title { font-family: "Libre Baskerville", Georgia, serif; }
 .internal-app .console-panel { background: var(--card); border: 1px solid var(--border); border-radius: 0.5rem; }
-.internal-app .console-kpi { background: var(--card); border: 1px solid var(--border); border-radius: 0.5rem; border-top: 2px solid var(--kpi-color, var(--border)); }
+.internal-app .console-kpi { background: var(--card); border: 1px solid var(--border); border-radius: 0.5rem; border-top: 2px solid var(--accent); }
 .internal-app .console-grid { background: var(--border); gap: 1px; border: 1px solid var(--border); border-radius: 0.5rem; overflow: hidden; }
 .internal-app .console-grid > * { background: var(--card); }

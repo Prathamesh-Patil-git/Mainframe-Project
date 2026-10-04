@@ -27,7 +27,7 @@ function Dashboard() {
       {lastEvent && <div className="flex items-center gap-2 border-l-2 border-info bg-info/5 px-3 py-2 text-sm" role="status"><StatusDot s="running" /> Simulated update: <span className="font-mono">{lastEvent}</span></div>}
 
       <section aria-label="Batch summary">
-        <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4 xl:grid-cols-8">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {kpis.map(({ key, ...k }) => <Kpi key={key} {...k} />)}
         </div>
       </section>

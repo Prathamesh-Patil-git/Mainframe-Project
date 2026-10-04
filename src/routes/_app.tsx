@@ -50,9 +50,7 @@ function AppLayout() {
   const sidebar = (compact: boolean) => (
     <div className="flex h-full flex-col">
       <div className={`flex h-16 items-center ${compact ? "justify-center" : "px-5"}`}>
-        <Link to="/dashboard" className="flex items-center gap-2.5">
-          <Logo />
-        </Link>
+        <Logo className="text-[13px]" />
       </div>
       <nav className="flex-1 space-y-5 overflow-y-auto px-3 py-3" aria-label="Main">
         {groups.map((g) => {
@@ -94,7 +92,7 @@ function AppLayout() {
 
   return (
     <div className="internal-app flex min-h-screen bg-surface text-foreground">
-      <aside className={`sticky top-0 hidden h-screen shrink-0 border-r border-border bg-card transition-[width] lg:block ${collapsed ? "w-[72px]" : "w-60"}`}>
+      <aside className={`sticky top-0 hidden h-screen shrink-0 border-r border-border bg-card transition-[width] lg:block ${collapsed ? "w-[72px]" : "w-64"}`}>
         {sidebar(collapsed)}
       </aside>
       {mobile && (
