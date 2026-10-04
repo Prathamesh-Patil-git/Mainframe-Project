@@ -32,7 +32,7 @@ function Dashboard() {
         </div>
       </section>
 
-      <div className="grid gap-5 xl:grid-cols-[minmax(270px,0.9fr)_minmax(430px,1.6fr)_minmax(280px,0.9fr)]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)_minmax(0,0.9fr)]">
         <section className="min-w-0">
           <SectionTitle right={<Link to="/streams" className="text-xs font-medium text-ai hover:underline">All streams →</Link>}>Batch streams</SectionTitle>
           <div className="console-panel divide-y divide-border overflow-hidden">
@@ -68,7 +68,7 @@ function Dashboard() {
           <SectionTitle>Incident brief</SectionTitle>
           <div className="overflow-hidden rounded-lg bg-navy p-5 text-primary-foreground">
             <div className="flex items-center gap-2 text-sm font-semibold"><AlertOctagon className="h-4 w-4 text-blocked" /> TRN003 · S0C7</div>
-            <p className="mt-2 text-sm leading-relaxed text-primary-foreground/80">VSAM duplicate key in NP.BATCH.JOBMASTER. Transaction processing is held.</p>
+            <p className="mt-2 break-words text-sm leading-relaxed text-primary-foreground/80">VSAM duplicate key in NP.BATCH.JOBMASTER. Transaction processing is held.</p>
             <div className="my-4 border-t border-primary-foreground/20" />
             <p className="text-[11px] font-semibold uppercase text-primary-foreground/60">Affected jobs</p>
             <p className="mt-1 font-mono text-xs">TRN004 · TRN005 · BIL004</p>
@@ -76,7 +76,7 @@ function Dashboard() {
           </div>
           <div className="console-panel mt-4 p-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-ai"><Sparkles className="h-4 w-4" /> AI analysis <span className="ml-auto font-mono text-[10px] font-normal text-muted-foreground">Illustrative</span></div>
-            <p className="mt-2 text-sm leading-relaxed">Likely duplicate record key <span className="font-mono text-xs">00048213-TX</span>.</p>
+            <p className="mt-2 break-words text-sm leading-relaxed">Likely duplicate record key <span className="font-mono text-xs">00048213-TX</span>.</p>
             <p className="mt-2 text-xs text-muted-foreground">{aiAnalysis.confidence}% confidence · review evidence before recovery.</p>
             <Link to="/ai-analysis" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-ai hover:underline">Open analysis <ArrowRight className="h-3 w-3" /></Link>
           </div>
