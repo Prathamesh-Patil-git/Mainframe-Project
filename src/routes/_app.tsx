@@ -38,8 +38,8 @@ function AppLayout() {
   const path = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    const s = readSession();
-    if (!s) { nav({ to: "/signin" }); return; }
+    // Demo bypass: no real auth yet — fall back to a default session instead of redirecting.
+    const s = readSession() ?? { name: "HERC02", username: "HERC02", role: "administrator" as const };
     setSession(s); setReady(true);
   }, [nav]);
   useEffect(() => setMobile(false), [path]);
