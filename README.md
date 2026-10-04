@@ -1,29 +1,37 @@
-# Welcome to your Lovable project
+# Mainframe Control Tower
 
-This project was built with [Lovable](https://lovable.dev).
+A control-tower web application for monitoring and managing mainframe batch workloads — public marketing site plus an internal operations console (dashboard, jobs, batch streams, dependency map, failures, AI analysis, recovery, reports, datasets, settings, users, audit log).
 
-## Build with Lovable
+> Academic / Project Demonstration · demo data only
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Frontend
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+The frontend stack is documented in [TECH_STACK.md](./TECH_STACK.md).
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
 ```sh
 git clone <this-repository-url>
-cd <repository-name>
+cd mainframe-control-tower
 npm i
 npm run dev
 ```
 
+## Scripts
+
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run build:dev` | Development-mode build (prerender) |
+| `npm run preview` | Preview the production build |
+| `npm run test` | Run tests (Vitest) |
+| `npm run lint` | ESLint |
+| `npm run format` | Prettier |
+
 ## Built with
 
-- TanStack Start
+- TanStack Start (React 19)
 - TypeScript
-- React
-- Tailwind CSS
+- Tailwind CSS v4
+- Vite
