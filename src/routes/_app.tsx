@@ -93,8 +93,8 @@ function AppLayout() {
   );
 
   return (
-    <div className="flex min-h-screen bg-surface">
-      <aside className={`sticky top-0 hidden h-screen shrink-0 border-r border-border bg-background transition-[width] lg:block ${collapsed ? "w-[72px]" : "w-64"}`}>
+    <div className="internal-app flex min-h-screen bg-surface text-foreground">
+      <aside className={`sticky top-0 hidden h-screen shrink-0 border-r border-border bg-card transition-[width] lg:block ${collapsed ? "w-[72px]" : "w-60"}`}>
         {sidebar(collapsed)}
       </aside>
       {mobile && (
@@ -107,7 +107,7 @@ function AppLayout() {
         </div>
       )}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur sm:px-6">
+        <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border bg-card px-4 sm:px-6">
           <button className="rounded-md p-2 hover:bg-muted lg:hidden" onClick={() => setMobile(true)} aria-label="Open menu"><Menu className="h-4 w-4" /></button>
           <button className="hidden rounded-md p-2 text-muted-foreground hover:bg-muted lg:inline-flex" onClick={() => setCollapsed((c) => !c)} aria-label="Toggle sidebar">
             {collapsed ? <PanelLeft className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
