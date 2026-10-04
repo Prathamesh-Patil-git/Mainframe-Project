@@ -54,10 +54,10 @@ function Dashboard() {
         <section className="min-w-0">
           <SectionTitle right={<DemoBadge>Live · simulated</DemoBadge>}>Job queue · attention first</SectionTitle>
           <div className="console-panel overflow-x-auto">
-            <table className="w-full min-w-[490px] text-left text-sm">
-              <thead className="border-b border-border bg-surface text-[11px] uppercase text-muted-foreground"><tr><th className="px-4 py-3 font-semibold">Job / program</th><th className="px-3 py-3 font-semibold">Stream</th><th className="px-3 py-3 font-semibold">Status</th><th className="px-4 py-3 text-right font-semibold">Started</th></tr></thead>
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-border bg-surface text-[11px] uppercase text-muted-foreground"><tr><th className="px-4 py-3 font-semibold">Job / program</th><th className="px-3 py-3 font-semibold">Stream</th><th className="px-3 py-3 font-semibold">Status</th></tr></thead>
               <tbody className="divide-y divide-border">
-                {priorityJobs.map((j) => <tr key={j.id} className="hover:bg-surface"><td className="px-4 py-3"><Link to="/jobs/$jobId" params={{ jobId: j.id }} className="font-mono font-semibold text-navy hover:underline">{j.id}</Link><span className="block font-mono text-[11px] text-muted-foreground">{j.program}</span></td><td className="px-3 py-3 text-xs">{streams.find((s) => s.id === j.stream)?.name}</td><td className="px-3 py-3"><StatusBadge s={j.status} /></td><td className="px-4 py-3 text-right font-mono text-xs text-muted-foreground">{j.start}</td></tr>)}
+                {priorityJobs.map((j) => <tr key={j.id} className="hover:bg-surface"><td className="px-4 py-3"><Link to="/jobs/$jobId" params={{ jobId: j.id }} className="font-mono font-semibold text-navy hover:underline">{j.id}</Link><span className="block font-mono text-[11px] text-muted-foreground">{j.program}</span></td><td className="px-3 py-3 text-xs">{streams.find((s) => s.id === j.stream)?.name}</td><td className="px-3 py-3"><StatusBadge s={j.status} /></td></tr>)}
               </tbody>
             </table>
             <Link to="/jobs" className="flex items-center justify-center gap-1 border-t border-border py-3 text-xs font-semibold text-ai hover:bg-surface">View all jobs <ArrowRight className="h-3 w-3" /></Link>
