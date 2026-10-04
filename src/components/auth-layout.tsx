@@ -22,7 +22,7 @@ export function AuthLayout({ children }: { children: ReactNode }) {
   );
 }
 
-export function Field({ label, error, children, id }: { label: string; error?: string; children: ReactNode; id: string }) {
+export function Field({ label, error, children, id }: { label: string; error?: string | undefined; children: ReactNode; id: string }) {
   return (
     <div className="space-y-1.5">
       <label htmlFor={id} className="text-sm font-medium">{label}</label>
