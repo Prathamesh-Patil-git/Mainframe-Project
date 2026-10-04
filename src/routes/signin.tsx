@@ -1,3 +1,4 @@
+import { saveSession } from "@/lib/session";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
@@ -37,6 +38,8 @@ function SignIn() {
     }
     setErrors({} as never);
     setLoading(true);
+    const id = r.data.identity.split("@")[0].toUpperCase().slice(0, 8);
+    saveSession({ name: id, username: id, role: "administrator" });
     setTimeout(() => nav({ to: "/dashboard" }), 900);
   };
 
