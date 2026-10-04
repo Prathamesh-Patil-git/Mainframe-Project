@@ -23,7 +23,7 @@ const btnS = `${btn} border border-border bg-card hover:bg-secondary`;
 const btnLight = `${btn} bg-primary-foreground text-navy hover:bg-primary-foreground/90`;
 const btnGhost = `${btn} border border-primary-foreground/40 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20`;
 const eyebrow = "font-mono text-[11px] tracking-[0.22em] text-muted-foreground";
-const eyebrowLight = "font-mono text-[11px] tracking-[0.22em] text-primary-foreground/70";
+const eyebrowLight = "hero-lead font-mono text-[11px] tracking-[0.22em] text-primary-foreground/85";
 const h2 = "font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl";
 const panel = "rounded-2xl border border-border bg-card shadow-soft";
 
