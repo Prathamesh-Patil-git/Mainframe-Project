@@ -139,3 +139,44 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
   border-radius: 0.875rem;
   border: 1px solid var(--color-border);
 }
+
+/* Internal console palette stays separate from the public site's editorial theme. */
+.internal-app {
+  --background: oklch(0.975 0.003 205);
+  --foreground: oklch(0.24 0.025 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.025 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.025 240);
+  --primary: oklch(0.24 0.025 240);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.95 0.005 220);
+  --muted: oklch(0.95 0.005 220);
+  --muted-foreground: oklch(0.48 0.022 240);
+  --accent: oklch(0.48 0.085 175);
+  --success: oklch(0.48 0.085 175);
+  --info: oklch(0.46 0.065 210);
+  --warning: oklch(0.62 0.105 55);
+  --blocked: oklch(0.59 0.12 42);
+  --ai: oklch(0.43 0.07 185);
+  --navy: oklch(0.24 0.025 240);
+  --surface: oklch(0.975 0.003 205);
+  --border: oklch(0.88 0.008 220);
+  --input: oklch(0.86 0.008 220);
+  --ring: oklch(0.48 0.085 175);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.24 0.025 240);
+  --sidebar-border: oklch(0.88 0.008 220);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.internal-app .clay {
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 7px oklch(0.24 0.025 240 / 0.025);
+}
+.internal-app .flat-panel { border-radius: 0.5rem; }
+.internal-app .console-title { font-family: "Libre Baskerville", Georgia, serif; }
+.internal-app .console-panel { background: var(--card); border: 1px solid var(--border); border-radius: 0.5rem; }
+.internal-app .console-kpi { background: var(--card); border: 1px solid var(--border); border-radius: 0.5rem; border-top: 2px solid var(--accent); }
+.internal-app .console-grid { background: var(--border); gap: 1px; border: 1px solid var(--border); border-radius: 0.5rem; overflow: hidden; }
+.internal-app .console-grid > * { background: var(--card); }

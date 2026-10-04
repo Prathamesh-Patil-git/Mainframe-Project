@@ -23,21 +23,21 @@ export function StatusDot({ s }: { s: JobStatus }) {
 export function StatusBadge({ s }: { s: JobStatus }) {
   const m = statusMeta[s];
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${m.bg} ${m.text}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded px-2 py-0.5 text-xs font-medium ${m.bg} ${m.text}`}>
       <StatusDot s={s} /> {m.label}
     </span>
   );
 }
 
 export function DemoBadge({ children = "Demo data" }: { children?: ReactNode }) {
-  return <span className="rounded-full border border-dashed border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{children}</span>;
+  return <span className="rounded border border-border bg-surface px-2 py-0.5 font-mono text-[10px] uppercase text-muted-foreground">{children}</span>;
 }
 
 export function PageHeader({ title, subtitle, actions }: { title: string; subtitle?: string; actions?: ReactNode }) {
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-navy sm:text-3xl">{title}</h1>
+        <h1 className="console-title text-2xl font-normal text-navy sm:text-[28px]">{title}</h1>
         {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
       </div>
       {actions && <div className="flex items-center gap-2">{actions}</div>}
@@ -48,7 +48,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
 export function SectionTitle({ children, right }: { children: ReactNode; right?: ReactNode }) {
   return (
     <div className="mb-3 flex items-center justify-between gap-2">
-      <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">{children}</h2>
+      <h2 className="text-xs font-semibold uppercase text-foreground/80">{children}</h2>
       {right}
     </div>
   );
@@ -70,13 +70,13 @@ export const toneText: Record<string, string> = {
 
 export function Kpi({ label, value, sub, trend, tone }: { label: string; value: string; sub: string; trend: readonly number[]; tone: string }) {
   return (
-    <div className="clay p-4 transition-transform hover:-translate-y-0.5">
-      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{label}</p>
+    <div className="console-kpi flex min-h-28 flex-col justify-between p-4">
+      <p className="text-[11px] font-semibold uppercase text-muted-foreground">{label}</p>
       <div className="mt-2 flex items-end justify-between gap-2">
-        <p className={`text-3xl font-semibold tracking-tight ${tone === "navy" ? "text-navy" : toneText[tone]}`}>{value}</p>
+        <p className={`font-mono text-[27px] font-medium leading-none ${tone === "navy" ? "text-navy" : toneText[tone]}`}>{value}</p>
         <Sparkline data={trend} className={toneText[tone] ?? "text-navy"} />
       </div>
-      <p className="mt-1 text-xs text-muted-foreground">{sub}</p>
+      <p className="mt-2 text-xs text-muted-foreground">{sub}</p>
     </div>
   );
 }
