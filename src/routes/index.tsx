@@ -65,7 +65,7 @@ function Nav() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Logo tone={onDark ? "light" : "dark"} />
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
-          {links.map(([l, h]) => <a key={h} href={h} className={`text-sm transition ${onDark ? "text-muted-foreground hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{l}</a>)}
+          {links.map(([l, h]) => <a key={h} href={h} className={`text-sm transition ${onDark ? "text-primary-foreground/85 hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{l}</a>)}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
           <Link to="/signin" className={`px-3 py-2 text-sm font-medium transition ${onDark ? "text-primary-foreground/90 hover:text-primary-foreground" : "hover:text-accent"}`}>Sign In</Link>
