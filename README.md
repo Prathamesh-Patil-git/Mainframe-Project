@@ -29,6 +29,15 @@ npm run dev
 | `npm run lint` | ESLint |
 | `npm run format` | Prettier |
 
+## Deployment
+
+The app builds with Nitro, which supports multiple hosts from one codebase:
+
+- **Vercel** — import the repository (framework preset: **Other**). `vercel.json` supplies the build command (`vite build`) and output directory; the Vercel preset is selected automatically (`VERCEL=1`). No extra dependencies or environment variables needed.
+- **Cloudflare** — the default build target (`cloudflare-module` preset), used by the Lovable preview.
+
+See [TECH_STACK.md](./TECH_STACK.md#deployment) for details.
+
 ## Built with
 
 - TanStack Start (React 19)
