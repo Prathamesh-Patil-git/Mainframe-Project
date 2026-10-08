@@ -77,7 +77,7 @@ export function Kpi({ label, value, sub, trend, tone }: { label: string; value: 
   const Icon = kpiIcons[label] ?? Layers;
   return (
     <div className="console-kpi flex min-w-0 items-start gap-3 p-4">
-      <span className={`icon-tile ${kpiTile[tone] ?? kpiTile.navy}`}><Icon className="h-[18px] w-[18px]" strokeWidth={1.7} /></span>
+      <span className={`icon-tile ${kpiTile[tone] ?? kpiTile["navy"]}`}><Icon className="h-[18px] w-[18px]" strokeWidth={1.7} /></span>
       <div className="min-w-0 flex-1">
         <p className="text-[10px] uppercase leading-relaxed text-muted-foreground">{label}</p>
         <p className="mt-1 font-mono text-[24px] font-medium leading-tight text-navy">{value}</p>
