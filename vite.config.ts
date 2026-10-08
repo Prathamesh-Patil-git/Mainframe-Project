@@ -12,12 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  nitro: {
-    // Deployment target: Cloudflare is the default (Lovable preview/sandbox keeps it),
-    // Vercel is selected automatically when building on Vercel (VERCEL=1) or when
-    // NITRO_PRESET is set. NITRO_PRESET always wins if you need to force a target.
-    preset:
-      process.env.NITRO_PRESET ??
-      (process.env.VERCEL ? "vercel" : undefined),
-  },
+  // Deployment target: Cloudflare is the default (Lovable preview/sandbox keeps it),
+  // Vercel is selected automatically when building on Vercel (VERCEL=1) or when
+  // NITRO_PRESET is set. NITRO_PRESET always wins if you need to force a target.
+  ...(() => {
+    const preset = process.env["NITRO_PRESET"] ?? (process.env["VERCEL"] ? "vercel" : undefined);
+    return preset ? { nitro: { preset } } : {};
+  })(),
 });
