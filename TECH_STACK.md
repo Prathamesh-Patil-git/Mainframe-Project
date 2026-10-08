@@ -32,3 +32,20 @@
 - Live updates flow only through `src/lib/live.ts` (single seam for a future WebSocket feed).
 - The internal console's colors and typography are scoped under the `.internal-app` class so its visual system stays independent of the public site's editorial theme.
 - Claymorphism (`clay` utility) is reserved for summary/KPI/AI/status cards; tables, logs, graphs and technical detail stay flat (`flat-panel`).
+
+## Deployment
+
+The server build runs on Nitro (Vite plugin), so the same codebase can target multiple hosts. No extra
+packages are required for Vercel — Nitro ships the `vercel` preset built in.
+
+| Target | How it's selected |
+| --- | --- |
+| Cloudflare (default) | Used for the Lovable sandbox/preview build (`cloudflare-module` preset) |
+| Vercel | Auto-selected when `VERCEL=1` is present (i.e. building on Vercel), or set `NITRO_PRESET=vercel` to force it |
+
+**Deploying to Vercel:**
+
+1. Import the repository into Vercel (framework preset: **Other** — `vercel.json` supplies the build command and output directory).
+2. Build command: `vite build` (already in `vercel.json`); Nitro emits the Vercel Build Output API under `.vercel/output`.
+3. No environment variables are required — `VERCEL=1` is set by Vercel itself and switches the Nitro preset to `vercel`.
+4. Node.js 20+ runtime recommended for the serverless functions.
