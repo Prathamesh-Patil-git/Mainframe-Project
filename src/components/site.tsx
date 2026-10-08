@@ -9,7 +9,7 @@ export function Logo({ className = "", tone = "dark" }: { className?: string; to
         <rect x="1" y="1" width="24" height="24" rx="6" className={light ? "fill-primary-foreground" : "fill-navy"} />
         <path d="M8 18V8m5 10V11m5 7v-4" className={light ? "stroke-navy" : "stroke-primary-foreground"} strokeWidth="2.2" strokeLinecap="round" />
       </svg>
-      <span className={`text-[15px] font-medium tracking-tight ${light ? "text-primary-foreground" : ""}`}>Mainframe Control Tower</span>
+      <span className={`text-[15px] font-semibold leading-snug ${light ? "text-primary-foreground" : ""}`}>Mainframe Control Tower</span>
     </Link>
   );
 }
@@ -71,11 +71,12 @@ export function WorkloadFlow({ compact = false }: { compact?: boolean }) {
     { id: "f", label: "REPORTING", job: "RPT001", x: 200, y: 400, s: "blocked" },
   ];
   const edges: [string, string][] = [["a", "b"], ["b", "c"], ["c", "d"], ["c", "e"], ["d", "f"], ["e", "f"]];
-  const get = (id: string) => nodes.find((n) => n.id === id)!;
+  const get = (id: string) => nodes.find((n) => n.id === id);
   return (
     <svg viewBox="0 0 400 440" className="h-auto w-full" role="img" aria-label="Batch workload flow diagram">
       {edges.map(([a, b]) => {
         const A = get(a), B = get(b);
+        if (!A || !B) return null;
         return (
           <path key={a + b} d={`M${A.x} ${A.y + 18} C ${A.x} ${(A.y + B.y) / 2}, ${B.x} ${(A.y + B.y) / 2}, ${B.x} ${B.y - 18}`}
             className="flow-line stroke-navy/30" strokeWidth="1.5" fill="none" />
