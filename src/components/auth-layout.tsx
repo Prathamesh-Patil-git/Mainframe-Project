@@ -4,9 +4,9 @@ import { Logo, WorkloadFlow } from "./site";
 export function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
-      <aside className="relative hidden flex-col justify-between border-r border-border bg-secondary p-12 lg:flex">
+      <aside className="relative hidden flex-col justify-between border-r border-border bg-surface p-12 lg:flex">
         <Logo />
-        <div className="mx-auto w-full max-w-sm">
+        <div className="mx-auto w-full max-w-sm rounded-lg border border-border bg-card p-6 shadow-soft">
           <WorkloadFlow />
         </div>
         <div>

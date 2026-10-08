@@ -65,7 +65,7 @@ function AppLayout() {
                   return (
                     <li key={i.to}>
                       <Link to={i.to} title={compact ? i.label : undefined}
-                        className={`flex items-center gap-3 rounded-lg px-2.5 py-2 text-sm transition ${compact ? "justify-center" : ""} ${active ? "bg-navy text-primary-foreground shadow-sm" : "text-foreground/75 hover:bg-muted hover:text-foreground"}`}>
+                        className={`flex items-center gap-3 rounded-lg px-2.5 py-2 text-sm transition ${compact ? "justify-center" : ""} ${active ? "bg-icon-blue text-primary font-medium" : "text-foreground/75 hover:bg-muted hover:text-foreground"}`}>
                         <i.icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
                         {!compact && i.label}
                       </Link>
@@ -92,7 +92,7 @@ function AppLayout() {
 
   return (
     <div className="internal-app flex min-h-screen bg-surface text-foreground">
-      <aside className={`sticky top-0 hidden h-screen shrink-0 border-r border-border bg-card transition-[width] lg:block ${collapsed ? "w-[72px]" : "w-64"}`}>
+      <aside className={`sticky top-0 hidden h-screen shrink-0 border-r border-border bg-card transition-[width] lg:block ${collapsed ? "w-[72px]" : "w-56"}`}>
         {sidebar(collapsed)}
       </aside>
       {mobile && (
@@ -117,7 +117,7 @@ function AppLayout() {
           <Notifications />
           <UserMenu session={session} onSignOut={() => { clearSession(); nav({ to: "/signin" }); }} />
         </header>
-        <main className="mx-auto w-full max-w-[1500px] flex-1 px-4 py-6 sm:px-6 lg:px-8">
+        <main className="mx-auto w-full max-w-[1440px] flex-1 px-4 py-8 sm:px-6 lg:px-10">
           <Outlet />
         </main>
       </div>

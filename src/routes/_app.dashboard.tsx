@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { RefreshCw, Sparkles, ArrowRight, AlertOctagon } from "lucide-react";
+import { RefreshCw, Sparkles, ArrowRight, AlertOctagon, ListChecks, Network, LifeBuoy } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { appHead } from "@/lib/head";
-import { kpis, streams, activityChart, failures, activity, aiAnalysis, LAST_SYNC } from "@/lib/demo/data";
+import { kpis, streams, activityChart, activity, aiAnalysis, LAST_SYNC } from "@/lib/demo/data";
+import { Button } from "@/components/ui/button";
 import { useLiveJobs } from "@/lib/live";
-import { Kpi, PageHeader, SectionTitle, StatusBadge, StatusDot, statusMeta, DemoBadge, btn } from "@/components/app/ui";
+import { Kpi, PageHeader, SectionTitle, StatusBadge, StatusDot, statusMeta, DemoBadge } from "@/components/app/ui";
 
 export const Route = createFileRoute("/_app/dashboard")({
   head: appHead("Operations Dashboard", "Live overview of tonight's mainframe batch workload, failures and AI insights."),
@@ -22,17 +23,29 @@ function Dashboard() {
     <div className="space-y-6">
       <PageHeader title="Operations Overview" subtitle="Nightly batch cycle · MVS-TK5 · simulated demo data" actions={<>
         <span className="hidden font-mono text-xs text-muted-foreground sm:inline">Last sync {LAST_SYNC}</span>
-        <button className={btn} onClick={refresh}><RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin" : ""}`} /> Refresh</button>
+        <Button variant="outline" size="sm" onClick={refresh}><RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin" : ""}`} /> Refresh</Button>
       </>} />
       {lastEvent && <div className="flex items-center gap-2 border-l-2 border-info bg-info/5 px-3 py-2 text-sm" role="status"><StatusDot s="running" /> Simulated update: <span className="font-mono">{lastEvent}</span></div>}
 
+      <section aria-label="Operations shortcuts" className="grid gap-4 md:grid-cols-3">
+        {[
+          { to: "/jobs", title: "Browse jobs", description: "Batch execution, job steps and return codes.", icon: ListChecks, tone: "bg-icon-blue text-primary" },
+          { to: "/dependencies", title: "Trace dependencies", description: "Connected workloads and downstream impact.", icon: Network, tone: "bg-icon-teal text-ai" },
+          { to: "/recovery", title: "Review recovery", description: "Restart plans and operator approvals.", icon: LifeBuoy, tone: "bg-icon-green text-success" },
+        ].map((item) => <Link key={item.to} to={item.to} className="reference-heading block p-5 transition hover:border-ring/40 hover:bg-surface">
+          <span className={`icon-tile ${item.tone}`}><item.icon className="h-5 w-5" strokeWidth={1.7} /></span>
+          <h2 className="mt-4 text-base font-semibold">{item.title}</h2>
+          <p className="mt-1 min-h-10 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+          <span className="mt-4 inline-flex items-center gap-1 text-sm text-primary">Open <ArrowRight className="h-3.5 w-3.5" /></span>
+        </Link>)}
+      </section>
       <section aria-label="Batch summary">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {kpis.map(({ key, ...k }) => <Kpi key={key} {...k} />)}
         </div>
       </section>
 
-      <div className="grid gap-5 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)_minmax(0,0.9fr)]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.65fr)_minmax(0,1fr)]">
         <section className="min-w-0">
           <SectionTitle right={<Link to="/streams" className="text-xs font-medium text-ai hover:underline">All streams →</Link>}>Batch streams</SectionTitle>
           <div className="console-panel divide-y divide-border overflow-hidden">
@@ -66,16 +79,16 @@ function Dashboard() {
 
         <section className="min-w-0">
           <SectionTitle>Incident brief</SectionTitle>
-          <div className="overflow-hidden rounded-lg bg-navy p-5 text-primary-foreground">
-            <div className="flex items-center gap-2 text-sm font-semibold"><AlertOctagon className="h-4 w-4 text-blocked" /> TRN003 · S0C7</div>
-            <p className="mt-2 break-words text-sm leading-relaxed text-primary-foreground/80">VSAM duplicate key in NP.BATCH.JOBMASTER. Transaction processing is held.</p>
-            <div className="my-4 border-t border-primary-foreground/20" />
-            <p className="text-[11px] font-semibold uppercase text-primary-foreground/60">Affected jobs</p>
+          <div className="reference-heading overflow-hidden p-5 text-foreground">
+            <div className="flex items-center gap-2 text-sm font-semibold"><span className="icon-tile bg-icon-red text-destructive"><AlertOctagon className="h-4 w-4" /></span> TRN003 · S0C7</div>
+            <p className="mt-2 break-words text-sm leading-relaxed text-muted-foreground">VSAM duplicate key in NP.BATCH.JOBMASTER. Transaction processing is held.</p>
+            <div className="my-4 border-t border-border" />
+            <p className="text-[11px] font-semibold uppercase text-muted-foreground">Affected jobs</p>
             <p className="mt-1 font-mono text-xs">TRN004 · TRN005 · BIL004</p>
-            <Link to="/failures" className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary-foreground hover:underline">Review failures <ArrowRight className="h-3 w-3" /></Link>
+            <Link to="/failures" className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline">Review failures <ArrowRight className="h-3 w-3" /></Link>
           </div>
           <div className="console-panel mt-4 p-4">
-            <div className="flex items-center gap-2 text-sm font-semibold text-ai"><Sparkles className="h-4 w-4" /> AI analysis <span className="ml-auto font-mono text-[10px] font-normal text-muted-foreground">Illustrative</span></div>
+            <div className="flex items-center gap-2 text-sm font-semibold text-ai"><span className="icon-tile bg-icon-teal text-ai"><Sparkles className="h-4 w-4" /></span> AI analysis <span className="ml-auto font-mono text-[10px] font-normal text-muted-foreground">Illustrative</span></div>
             <p className="mt-2 break-words text-sm leading-relaxed">Likely duplicate record key <span className="font-mono text-xs">00048213-TX</span>.</p>
             <p className="mt-2 text-xs text-muted-foreground">{aiAnalysis.confidence}% confidence · review evidence before recovery.</p>
             <Link to="/ai-analysis" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-ai hover:underline">Open analysis <ArrowRight className="h-3 w-3" /></Link>

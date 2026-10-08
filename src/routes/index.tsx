@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Layers, Network, Sparkles, LifeBuoy } from "lucide-react";
 import { Logo, Reveal, Dot, WorkloadFlow, type Status } from "@/components/site";
+import { Button } from "@/components/ui/button";
 import heroDatacenter from "@/assets/hero-datacenter.jpg";
 import controlRoom from "@/assets/control-room.jpg";
 
@@ -12,6 +13,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Monitor mainframe batch execution, understand failures, trace downstream impact and recover with AI-assisted recommendations." },
       { property: "og:title", content: "Mainframe Control Tower — Clarity for complex mainframe workloads" },
       { property: "og:description", content: "AI-powered visibility and intelligent recovery for enterprise batch workloads." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Landing,
@@ -23,9 +26,9 @@ const btnS = `${btn} border border-border bg-card hover:bg-secondary`;
 const btnLight = `${btn} bg-primary-foreground text-navy hover:bg-primary-foreground/90`;
 const btnGhost = `${btn} border border-primary-foreground/40 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20`;
 const eyebrow = "font-mono text-[11px] tracking-[0.22em] text-muted-foreground";
-const eyebrowLight = "hero-lead font-mono text-[11px] tracking-[0.22em] text-primary-foreground/85";
-const h2 = "font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl";
-const panel = "rounded-2xl border border-border bg-card shadow-soft";
+const eyebrowLight = "hero-lead font-mono text-[11px] text-primary-foreground/85";
+const h2 = "font-display text-3xl leading-tight sm:text-4xl";
+const panel = "rounded-lg border border-border bg-card shadow-soft";
 
 function Landing() {
   return (
@@ -62,7 +65,7 @@ function Nav() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Logo tone={onDark ? "light" : "dark"} />
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
-          {links.map(([l, h]) => <a key={h} href={h} className={`text-sm transition ${onDark ? "text-primary-foreground/70 hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{l}</a>)}
+          {links.map(([l, h]) => <a key={h} href={h} className={`text-sm transition ${onDark ? "text-muted-foreground hover:text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{l}</a>)}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
           <Link to="/signin" className={`px-3 py-2 text-sm font-medium transition ${onDark ? "text-primary-foreground/90 hover:text-primary-foreground" : "hover:text-accent"}`}>Sign In</Link>
@@ -86,48 +89,34 @@ function Nav() {
 }
 
 function Section({ id, children, className = "" }: { id?: string; children: ReactNode; className?: string }) {
-  return <section id={id} className={`scroll-mt-16 px-6 py-24 sm:py-32 ${className}`}><div className="mx-auto max-w-7xl">{children}</div></section>;
+  return <section id={id} className={`scroll-mt-16 px-6 py-16 sm:py-20 ${className}`}><div className="mx-auto max-w-7xl">{children}</div></section>;
 }
 
 function Hero() {
   return (
-    <Section className="relative pt-16 sm:pt-20">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-16 bottom-0 -z-10 overflow-hidden">
-        <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/55 via-60% to-background to-82%" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/75 via-navy/35 via-45% to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy/90 via-navy/60 to-transparent" />
-      </div>
-      <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
-        <Reveal>
+    <>
+      <Section className="relative pt-20 sm:pt-24">
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-16 bottom-0 -z-10 overflow-hidden">
+          <img src={heroDatacenter} alt="" width={1920} height={1088} className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-navy/65" />
+        </div>
+        <Reveal className="max-w-3xl pb-8">
           <p className={eyebrowLight}>AI-POWERED MAINFRAME OPERATIONS</p>
-          <h1 className="hero-title mt-6 font-display text-5xl leading-[1] tracking-tight text-primary-foreground sm:text-7xl lg:text-[5.5rem]">
-            Bring clarity to complex mainframe workloads.
-          </h1>
-          <p className="hero-lead mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/85">
-            Monitor batch execution, understand failures, trace downstream impact, and make smarter recovery decisions from one intelligent control tower.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link to="/signup" className={btnLight}>Get Started <ArrowRight size={16} /></Link>
-            <a href="#product" className={btnGhost}>Explore the Platform</a>
+          <h1 className="hero-title mt-5 font-display text-4xl leading-tight text-primary-foreground sm:text-6xl">Mainframe Control Tower</h1>
+          <p className="hero-lead mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">Monitor batch execution, understand failures, trace downstream impact, and make smarter recovery decisions from one intelligent control tower.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button asChild className={btnLight}><Link to="/dashboard">Open Control Tower <ArrowRight size={16} /></Link></Button>
+            <Button asChild variant="outline" className={btnGhost}><a href="#product">Explore the Platform</a></Button>
           </div>
         </Reveal>
-        <Reveal delay={150} className={`${panel} p-6 sm:p-8`}>
-          <div className="mb-4 flex items-center justify-between font-mono text-[11px] text-muted-foreground">
-            <span>NIGHTLY BATCH · STREAM 03</span>
-            <span className="flex items-center gap-1.5"><Dot s="running" /> LIVE</span>
-          </div>
-          <WorkloadFlow />
-          <div className="mt-4 flex flex-wrap gap-4 border-t border-border pt-4 font-mono text-[11px] text-muted-foreground">
-            {(["completed", "running", "warning", "failed"] as Status[]).map((s) => <span key={s} className="flex items-center gap-1.5"><Dot s={s} />{s}</span>)}
-          </div>
-        </Reveal>
+      </Section>
+      <div className="border-b border-border bg-card px-6 py-5">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
+          <span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="icon-tile bg-icon-blue text-primary"><Layers className="h-5 w-5" /></span>Enterprise batch processing</span>
+          <p className="font-mono text-xs text-primary">JCL · COBOL · VSAM · JES · SORT · AI · APIs</p>
+        </div>
       </div>
-      <Reveal className="mt-24 border-t border-border pt-10 text-center">
-        <p className="text-sm text-muted-foreground">Built around the technologies that power enterprise batch processing.</p>
-        <p className="mt-3 font-mono text-sm tracking-[0.15em]">JCL · COBOL · VSAM · JES · SORT · AI · APIs</p>
-      </Reveal>
-    </Section>
+    </>
   );
 }
 
@@ -239,7 +228,7 @@ function WorkloadFlowMini() {
   const xs = [10, 70, 130, 190, 250];
   return (
     <svg viewBox="0 0 280 60" className="w-full" aria-hidden>
-      {xs.slice(0, -1).map((x, i) => <line key={x} x1={x + 14} y1={30} x2={xs[i + 1]! - 4} y2={30} className="flow-line stroke-navy/30" strokeWidth="1.5" />)}
+      {xs.slice(0, -1).map((x, i) => <line key={x} x1={x + 14} y1={30} x2={(xs[i + 1] ?? x) - 4} y2={30} className="flow-line stroke-navy/30" strokeWidth="1.5" />)}
       {xs.map((x, i) => <rect key={x} x={x - 4} y={20} width="22" height="20" rx="5" className={["fill-success", "fill-destructive", "fill-muted-foreground/40", "fill-muted-foreground/40", "fill-warning"][i]} opacity={0.85} />)}
     </svg>
   );
@@ -258,7 +247,7 @@ function Features() {
         <Section key={it.t} className={i % 2 ? "bg-secondary/60" : ""}>
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <Reveal className={i % 2 ? "lg:order-2" : ""}>
-              <p className="font-mono text-xs text-muted-foreground">0{i + 1}</p>
+              <span className={`icon-tile ${["bg-icon-blue text-primary", "bg-icon-teal text-ai", "bg-icon-red text-destructive", "bg-icon-green text-success"][i] ?? "bg-icon-blue text-primary"}`}>{(() => { const Icon = [Layers, Network, Sparkles, LifeBuoy][i] ?? Layers; return <Icon className="h-5 w-5" />; })()}</span>
               <h2 className={`${h2} mt-4`}>{it.t}</h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">{it.d}</p>
             </Reveal>
@@ -328,19 +317,19 @@ function AI() {
     ["RECOMMENDED RECOVERY", "Restart from STEP03 after correcting the duplicate transaction record."],
   ];
   return (
-    <Section id="ai" className="bg-navy text-primary-foreground">
+    <Section id="ai" className="bg-secondary/60">
       <div className="grid gap-16 lg:grid-cols-2">
         <Reveal>
-          <p className="font-mono text-[11px] tracking-[0.22em] text-primary-foreground/60">INTELLIGENT ANALYSIS</p>
-          <h2 className={`${h2} mt-5`}>Don't just detect a failure. <span className="text-primary-foreground/60">Understand why it happened.</span></h2>
-          <p className="mt-8 max-w-md text-lg leading-relaxed text-primary-foreground/70">AI reads job steps, return codes, error events and dependency context together — and explains what happened in plain language.</p>
+          <p className="font-mono text-[11px] tracking-[0.22em] text-muted-foreground">INTELLIGENT ANALYSIS</p>
+          <h2 className={`${h2} mt-5`}>Don't just detect a failure. <span className="text-muted-foreground">Understand why it happened.</span></h2>
+          <p className="mt-8 max-w-md text-lg leading-relaxed text-muted-foreground">AI reads job steps, return codes, error events and dependency context together — and explains what happened in plain language.</p>
         </Reveal>
-        <div className="rounded-2xl border border-primary-foreground/15 bg-primary-foreground/[0.04] p-6 sm:p-8">
-          <div className="flex items-center justify-between font-mono text-[11px] text-primary-foreground/60"><span>AI ANALYSIS</span><span className="rounded border border-primary-foreground/20 px-2 py-0.5">ILLUSTRATIVE EXAMPLE</span></div>
+        <div className="rounded-lg border border-border bg-card p-6 shadow-soft sm:p-8">
+          <div className="flex items-center justify-between font-mono text-[11px] text-muted-foreground"><span>AI ANALYSIS</span><span className="rounded border border-border px-2 py-0.5">ILLUSTRATIVE EXAMPLE</span></div>
           <div className="mt-6 space-y-3">
             {blocks.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 220} className="rounded-xl border border-primary-foreground/10 p-5">
-                <p className="font-mono text-[11px] tracking-[0.18em] text-primary-foreground/50">{t}</p>
+              <Reveal key={t} delay={i * 220} className="border-b border-border pb-5">
+                <p className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground">{t}</p>
                 <p className={`mt-2 ${i === 0 ? "font-mono text-sm" : "text-base"}`}>{d}</p>
               </Reveal>
             ))}
@@ -468,7 +457,7 @@ function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-16 flex max-w-7xl flex-wrap justify-between gap-2 border-t border-border pt-6 text-xs text-muted-foreground">
-        <span>© 2026 Mainframe Control Tower</span><span>Academic / Project Demonstration</span>
+        <span>© 2026 Mainframe Control Tower · Academic / Project Demonstration</span>
       </div>
     </footer>
   );

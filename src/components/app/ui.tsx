@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { LayoutDashboard, Layers, Activity, CheckCircle2, AlertTriangle, LockKeyhole, Target, Clock, Timer } from "lucide-react";
 import type { JobStatus } from "@/lib/demo/data";
 
 export const statusMeta: Record<JobStatus, { label: string; text: string; bg: string; dot: string; glyph: string }> = {
@@ -35,10 +36,11 @@ export function DemoBadge({ children = "Demo data" }: { children?: ReactNode }) 
 
 export function PageHeader({ title, subtitle, actions }: { title: string; subtitle?: string; actions?: ReactNode }) {
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <h1 className="console-title text-2xl font-normal text-navy sm:text-[28px]">{title}</h1>
-        {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
+    <div className="reference-heading mb-6 flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6">
+      <div className="flex items-center gap-4">
+        <span className="icon-tile bg-icon-blue text-primary"><LayoutDashboard className="h-5 w-5" /></span>
+        <div><h1 className="console-title text-2xl text-navy sm:text-[28px]">{title}</h1>
+        {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}</div>
       </div>
       {actions && <div className="flex items-center gap-2">{actions}</div>}
     </div>
@@ -68,15 +70,19 @@ export const toneText: Record<string, string> = {
   navy: "text-navy", info: "text-info", success: "text-success", destructive: "text-destructive", blocked: "text-blocked", warning: "text-warning", ai: "text-ai",
 };
 
+const kpiIcons: Record<string, typeof Layers> = { "Total jobs": Layers, "Running": Activity, "Completed": CheckCircle2, "Failed": AlertTriangle, "Blocked": LockKeyhole, "Success rate": Target, "Avg processing time": Timer, "Delayed jobs": Clock };
+const kpiTile: Record<string, string> = { navy: "bg-icon-blue text-primary", info: "bg-icon-blue text-info", success: "bg-icon-green text-success", destructive: "bg-icon-red text-destructive", blocked: "bg-icon-amber text-blocked", warning: "bg-icon-amber text-warning", ai: "bg-icon-teal text-ai" };
+
 export function Kpi({ label, value, sub, trend, tone }: { label: string; value: string; sub: string; trend: readonly number[]; tone: string }) {
+  const Icon = kpiIcons[label] ?? Layers;
   return (
-    <div className="console-kpi flex min-h-28 flex-col justify-between p-4">
-      <p className="text-[11px] font-semibold uppercase text-muted-foreground">{label}</p>
-      <div className="mt-2 flex items-end justify-between gap-2">
-        <p className={`font-mono text-[27px] font-medium leading-none ${tone === "navy" ? "text-navy" : toneText[tone]}`}>{value}</p>
-        <Sparkline data={trend} className={toneText[tone] ?? "text-navy"} />
+    <div className="console-kpi flex min-w-0 items-start gap-3 p-4">
+      <span className={`icon-tile ${kpiTile[tone] ?? kpiTile.navy}`}><Icon className="h-[18px] w-[18px]" strokeWidth={1.7} /></span>
+      <div className="min-w-0 flex-1">
+        <p className="text-[10px] uppercase leading-relaxed text-muted-foreground">{label}</p>
+        <p className="mt-1 font-mono text-[24px] font-medium leading-tight text-navy">{value}</p>
+        <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{sub}</p>
       </div>
-      <p className="mt-2 text-xs text-muted-foreground">{sub}</p>
     </div>
   );
 }

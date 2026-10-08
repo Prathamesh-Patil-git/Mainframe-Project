@@ -16,4 +16,4 @@
 - Live updates come only from `src/lib/live.ts` — single seam to replace with a WebSocket feed.
 - Sign-in is a browser-stored demo session (`src/lib/session.ts`), not real security; replace with real auth before production.
 - Claymorphism (`clay` utility) is for summary/KPI/AI/status cards only; tables, logs, graphs use `flat-panel` — preserves readability.
-- The internal console's colors and typography are scoped under `.internal-app` — its visual system can evolve without changing the public site's editorial theme.
+- Public and internal pages share global semantic palette and sans-serif typography tokens; internal layout treatments remain scoped under `.internal-app` — keeps the reference style consistent without coupling page structure.

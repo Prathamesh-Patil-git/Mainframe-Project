@@ -2,6 +2,7 @@ import { saveSession } from "@/lib/session";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
+import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { AuthLayout, Field, inputCls, btnPrimary } from "@/components/auth-layout";
 import { PasswordInput } from "@/components/password-input";
@@ -9,6 +10,8 @@ import { PasswordInput } from "@/components/password-input";
 export const Route = createFileRoute("/signin")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Sign In — Mainframe Control Tower" },
       { name: "description", content: "Sign in to Mainframe Control Tower to monitor batch workloads and recover with confidence." },
       { property: "og:title", content: "Sign In — Mainframe Control Tower" },
@@ -58,9 +61,9 @@ function SignIn() {
           <label className="flex items-center gap-2"><input type="checkbox" name="remember" className="accent-primary" /> Remember me</label>
           <a href="#" className="text-accent hover:underline">Forgot password?</a>
         </div>
-        <button type="submit" disabled={loading} className={`${btnPrimary} w-full`}>
+        <Button type="submit" disabled={loading} className={`${btnPrimary} w-full`}>
           {loading && <Loader2 size={16} className="animate-spin" />} {loading ? "Signing in…" : "Sign In"}
-        </button>
+        </Button>
       </form>
       <p className="mt-8 text-sm text-muted-foreground">
         Don't have an account? <Link to="/signup" className="font-medium text-foreground hover:underline">Create account</Link>
